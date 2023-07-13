@@ -1828,6 +1828,7 @@ API to put together the release notes.</p>
 <li><a href="features/index.html#user-snippet-completions">User Snippet Completions</a></li>
 <li><a href="features/index.html#view-crate-graph">View Crate Graph</a></li>
 <li><a href="features/index.html#view-hir">View Hir</a></li>
+<li><a href="features/index.html#view-memory-layout">View Memory Layout</a></li>
 <li><a href="features/index.html#view-mir">View Mir</a></li>
 <li><a href="features/index.html#workspace-symbol">Workspace Symbol</a></li>
 </ul>
@@ -2565,6 +2566,13 @@ is part of graphviz, to be installed.</p>
 </tbody></table>
 </div>
 <p><img src="features//img/features/view_hir.gif" alt="View Hir" /></p>
+<h3 id="view-memory-layout"><a class="header" href="#view-memory-layout">View Memory Layout</a></h3>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide/src/view_memory_layout.rs#L83">view_memory_layout.rs</a></p>
+<p>Displays the recursive memory layout of a datatype.</p>
+<p>|===
+| Editor  | Action Name</p>
+<p>| VS Code | <strong>rust-analyzer: View Memory Layout</strong>
+|===</p>
 <h3 id="view-mir"><a class="header" href="#view-mir">View Mir</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide/src/view_mir.rs#L6">view_mir.rs</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Editor</th><th>Action Name</th></tr></thead><tbody>
@@ -2656,6 +2664,7 @@ the filtering via the <code>rust-analyzer.workspace.symbol.search.scope</code> a
 <li><a href="assists/index.html#generate_is_empty_from_len">generate_is_empty_from_len</a></li>
 <li><a href="assists/index.html#generate_new">generate_new</a></li>
 <li><a href="assists/index.html#generate_setter">generate_setter</a></li>
+<li><a href="assists/index.html#generate_trait_from_impl">generate_trait_from_impl</a></li>
 <li><a href="assists/index.html#generate_trait_impl">generate_trait_impl</a></li>
 <li><a href="assists/index.html#inline_call">inline_call</a></li>
 <li><a href="assists/index.html#inline_const_as_literal">inline_const_as_literal</a></li>
@@ -3520,7 +3529,7 @@ impl Default for Example {
     }
 }</code></pre>
 <h3 id="generate_delegate_methods"><a class="header" href="#generate_delegate_methods">generate_delegate_methods</a></h3>
-<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_delegate_methods.rs#L12">generate_delegate_methods.rs</a></p>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_delegate_methods.rs#L16">generate_delegate_methods.rs</a></p>
 <blockquote>
 <p>Generate delegate methods.</p>
 </blockquote>
@@ -3635,7 +3644,7 @@ impl core::ops::Deref for B {
     }
 }</code></pre>
 <h3 id="generate_derive"><a class="header" href="#generate_derive">generate_derive</a></h3>
-<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_derive.rs#L9">generate_derive.rs</a></p>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_derive.rs#L8">generate_derive.rs</a></p>
 <blockquote>
 <p>Adds a new <code>#[derive()]</code> clause to a struct or enum.</p>
 </blockquote>
@@ -3835,7 +3844,7 @@ fn bar(arg: &amp;str, baz: Baz) ${0:-&gt; _} {
 }
 </code></pre>
 <h3 id="generate_getter"><a class="header" href="#generate_getter">generate_getter</a></h3>
-<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_getter.rs#L13">generate_getter.rs</a></p>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_getter_or_setter.rs#L73">generate_getter_or_setter.rs</a></p>
 <blockquote>
 <p>Generate a getter method.</p>
 </blockquote>
@@ -3854,7 +3863,7 @@ impl Person {
     }
 }</code></pre>
 <h3 id="generate_getter_mut"><a class="header" href="#generate_getter_mut">generate_getter_mut</a></h3>
-<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_getter.rs#L53">generate_getter.rs</a></p>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_getter_or_setter.rs#L113">generate_getter_or_setter.rs</a></p>
 <blockquote>
 <p>Generate a mut getter method.</p>
 </blockquote>
@@ -3935,7 +3944,7 @@ impl&lt;T: Clone&gt; Ctx&lt;T&gt; {
     fn ┃new(data: T) -&gt; Self { Self { data } }
 }</code></pre>
 <h3 id="generate_setter"><a class="header" href="#generate_setter">generate_setter</a></h3>
-<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_setter.rs#L9">generate_setter.rs</a></p>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_getter_or_setter.rs#L13">generate_getter_or_setter.rs</a></p>
 <blockquote>
 <p>Generate a setter method.</p>
 </blockquote>
@@ -3949,20 +3958,72 @@ impl&lt;T: Clone&gt; Ctx&lt;T&gt; {
 }
 
 impl Person {
-    fn set_name(&amp;mut self, name: String) {
+    fn ┃set_name(&amp;mut self, name: String) {
         self.name = name;
     }
+}</code></pre>
+<h3 id="generate_trait_from_impl"><a class="header" href="#generate_trait_from_impl">generate_trait_from_impl</a></h3>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_trait_from_impl.rs#L13">generate_trait_from_impl.rs</a></p>
+<blockquote>
+<p>Generate trait for an already defined inherent impl and convert impl to a trait impl.</p>
+</blockquote>
+<h4 id="before-61"><a class="header" href="#before-61">Before</a></h4>
+<pre><code class="language-rust">struct Foo&lt;const N: usize&gt;([i32; N]);
+
+macro_rules! const_maker {
+    ($t:ty, $v:tt) =&gt; {
+        const CONST: $t = $v;
+    };
+}
+
+impl&lt;const N: usize&gt; Fo┃o&lt;N&gt; {
+    // Used as an associated constant.
+    const CONST_ASSOC: usize = N * 4;
+
+    fn create() -&gt; Option&lt;()&gt; {
+        Some(())
+    }
+
+    const_maker! {i32, 7}
+}</code></pre>
+<h4 id="after-61"><a class="header" href="#after-61">After</a></h4>
+<pre><code class="language-rust">struct Foo&lt;const N: usize&gt;([i32; N]);
+
+macro_rules! const_maker {
+    ($t:ty, $v:tt) =&gt; {
+        const CONST: $t = $v;
+    };
+}
+
+trait ${0:TraitName}&lt;const N: usize&gt; {
+    // Used as an associated constant.
+    const CONST_ASSOC: usize = N * 4;
+
+    fn create() -&gt; Option&lt;()&gt;;
+
+    const_maker! {i32, 7}
+}
+
+impl&lt;const N: usize&gt; ${0:TraitName}&lt;N&gt; for Foo&lt;N&gt; {
+    // Used as an associated constant.
+    const CONST_ASSOC: usize = N * 4;
+
+    fn create() -&gt; Option&lt;()&gt; {
+        Some(())
+    }
+
+    const_maker! {i32, 7}
 }</code></pre>
 <h3 id="generate_trait_impl"><a class="header" href="#generate_trait_impl">generate_trait_impl</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/generate_impl.rs#L56">generate_impl.rs</a></p>
 <blockquote>
 <p>Adds a new trait impl for a type.</p>
 </blockquote>
-<h4 id="before-61"><a class="header" href="#before-61">Before</a></h4>
+<h4 id="before-62"><a class="header" href="#before-62">Before</a></h4>
 <pre><code class="language-rust">struct ┃Ctx&lt;T: Clone&gt; {
     data: T,
 }</code></pre>
-<h4 id="after-61"><a class="header" href="#after-61">After</a></h4>
+<h4 id="after-62"><a class="header" href="#after-62">After</a></h4>
 <pre><code class="language-rust">struct Ctx&lt;T: Clone&gt; {
     data: T,
 }
@@ -3977,11 +4038,11 @@ impl&lt;T: Clone&gt; ┃ for Ctx&lt;T&gt; {
 can be inlined. The parameter will be inlined either if it the supplied argument is a simple local
 or if the parameter is only accessed inside the function body once.</p>
 </blockquote>
-<h4 id="before-62"><a class="header" href="#before-62">Before</a></h4>
+<h4 id="before-63"><a class="header" href="#before-63">Before</a></h4>
 <pre><code class="language-rust">fn foo(name: Option&lt;&amp;str&gt;) {
     let name = name.unwrap┃();
 }</code></pre>
-<h4 id="after-62"><a class="header" href="#after-62">After</a></h4>
+<h4 id="after-63"><a class="header" href="#after-63">After</a></h4>
 <pre><code class="language-rust">fn foo(name: Option&lt;&amp;str&gt;) {
     let name = match name {
             Some(val) =&gt; val,
@@ -3993,13 +4054,13 @@ or if the parameter is only accessed inside the function body once.</p>
 <blockquote>
 <p>Evaluate and inline const variable as literal.</p>
 </blockquote>
-<h4 id="before-63"><a class="header" href="#before-63">Before</a></h4>
+<h4 id="before-64"><a class="header" href="#before-64">Before</a></h4>
 <pre><code class="language-rust">const STRING: &amp;str = &quot;Hello, World!&quot;;
 
 fn something() -&gt; &amp;'static str {
     STRING┃
 }</code></pre>
-<h4 id="after-63"><a class="header" href="#after-63">After</a></h4>
+<h4 id="after-64"><a class="header" href="#after-64">After</a></h4>
 <pre><code class="language-rust">const STRING: &amp;str = &quot;Hello, World!&quot;;
 
 fn something() -&gt; &amp;'static str {
@@ -4013,7 +4074,7 @@ unless the parameter can be inlined. The parameter will be inlined either if it 
 or if the parameter is only accessed inside the function body once.
 If all calls can be inlined the function will be removed.</p>
 </blockquote>
-<h4 id="before-64"><a class="header" href="#before-64">Before</a></h4>
+<h4 id="before-65"><a class="header" href="#before-65">Before</a></h4>
 <pre><code class="language-rust">fn print(_: &amp;str) {}
 fn foo┃(word: &amp;str) {
     if !word.is_empty() {
@@ -4024,7 +4085,7 @@ fn bar() {
     foo(&quot;안녕하세요&quot;);
     foo(&quot;여러분&quot;);
 }</code></pre>
-<h4 id="after-64"><a class="header" href="#after-64">After</a></h4>
+<h4 id="after-65"><a class="header" href="#after-65">After</a></h4>
 <pre><code class="language-rust">fn print(_: &amp;str) {}
 
 fn bar() {
@@ -4046,12 +4107,12 @@ fn bar() {
 <blockquote>
 <p>Inlines a local variable.</p>
 </blockquote>
-<h4 id="before-65"><a class="header" href="#before-65">Before</a></h4>
+<h4 id="before-66"><a class="header" href="#before-66">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     let x┃ = 1 + 2;
     x * 4;
 }</code></pre>
-<h4 id="after-65"><a class="header" href="#after-65">After</a></h4>
+<h4 id="after-66"><a class="header" href="#after-66">After</a></h4>
 <pre><code class="language-rust">fn main() {
     (1 + 2) * 4;
 }</code></pre>
@@ -4060,7 +4121,7 @@ fn bar() {
 <blockquote>
 <p>Takes a macro and inlines it one step.</p>
 </blockquote>
-<h4 id="before-66"><a class="header" href="#before-66">Before</a></h4>
+<h4 id="before-67"><a class="header" href="#before-67">Before</a></h4>
 <pre><code class="language-rust">macro_rules! num {
     (+$($t:tt)+) =&gt; (1 + num!($($t )+));
     (-$($t:tt)+) =&gt; (-1 + num!($($t )+));
@@ -4072,7 +4133,7 @@ fn main() {
     let number = num┃!(+ + + - + +);
     println!(&quot;{number}&quot;);
 }</code></pre>
-<h4 id="after-66"><a class="header" href="#after-66">After</a></h4>
+<h4 id="after-67"><a class="header" href="#after-67">After</a></h4>
 <pre><code class="language-rust">macro_rules! num {
     (+$($t:tt)+) =&gt; (1 + num!($($t )+));
     (-$($t:tt)+) =&gt; (-1 + num!($($t )+));
@@ -4089,13 +4150,13 @@ fn main() {
 <blockquote>
 <p>Replace a type alias with its concrete type.</p>
 </blockquote>
-<h4 id="before-67"><a class="header" href="#before-67">Before</a></h4>
+<h4 id="before-68"><a class="header" href="#before-68">Before</a></h4>
 <pre><code class="language-rust">type A&lt;T = u32&gt; = Vec&lt;T&gt;;
 
 fn main() {
     let a: ┃A;
 }</code></pre>
-<h4 id="after-67"><a class="header" href="#after-67">After</a></h4>
+<h4 id="after-68"><a class="header" href="#after-68">After</a></h4>
 <pre><code class="language-rust">type A&lt;T = u32&gt; = Vec&lt;T&gt;;
 
 fn main() {
@@ -4106,7 +4167,7 @@ fn main() {
 <blockquote>
 <p>Inline a type alias into all of its uses where possible.</p>
 </blockquote>
-<h4 id="before-68"><a class="header" href="#before-68">Before</a></h4>
+<h4 id="before-69"><a class="header" href="#before-69">Before</a></h4>
 <pre><code class="language-rust">type ┃A = i32;
 fn id(x: A) -&gt; A {
     x
@@ -4114,7 +4175,7 @@ fn id(x: A) -&gt; A {
 fn foo() {
     let _: A = 3;
 }</code></pre>
-<h4 id="after-68"><a class="header" href="#after-68">After</a></h4>
+<h4 id="after-69"><a class="header" href="#after-69">After</a></h4>
 <pre><code class="language-rust">
 fn id(x: i32) -&gt; i32 {
     x
@@ -4127,16 +4188,16 @@ fn foo() {
 <blockquote>
 <p>Replaces <code>impl Trait</code> function argument with the named generic.</p>
 </blockquote>
-<h4 id="before-69"><a class="header" href="#before-69">Before</a></h4>
+<h4 id="before-70"><a class="header" href="#before-70">Before</a></h4>
 <pre><code class="language-rust">fn foo(bar: ┃impl Bar) {}</code></pre>
-<h4 id="after-69"><a class="header" href="#after-69">After</a></h4>
+<h4 id="after-70"><a class="header" href="#after-70">After</a></h4>
 <pre><code class="language-rust">fn foo&lt;┃B: Bar&gt;(bar: B) {}</code></pre>
 <h3 id="introduce_named_lifetime"><a class="header" href="#introduce_named_lifetime">introduce_named_lifetime</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/introduce_named_lifetime.rs#L13">introduce_named_lifetime.rs</a></p>
 <blockquote>
 <p>Change an anonymous lifetime to a named lifetime.</p>
 </blockquote>
-<h4 id="before-70"><a class="header" href="#before-70">Before</a></h4>
+<h4 id="before-71"><a class="header" href="#before-71">Before</a></h4>
 <pre><code class="language-rust">impl Cursor&lt;'_┃&gt; {
     fn node(self) -&gt; &amp;SyntaxNode {
         match self {
@@ -4144,7 +4205,7 @@ fn foo() {
         }
     }
 }</code></pre>
-<h4 id="after-70"><a class="header" href="#after-70">After</a></h4>
+<h4 id="after-71"><a class="header" href="#after-71">After</a></h4>
 <pre><code class="language-rust">impl&lt;'a&gt; Cursor&lt;'a&gt; {
     fn node(self) -&gt; &amp;SyntaxNode {
         match self {
@@ -4158,11 +4219,11 @@ fn foo() {
 <p>This transforms if expressions of the form <code>if !x {A} else {B}</code> into <code>if x {B} else {A}</code>
 This also works with <code>!=</code>. This assist can only be applied with the cursor on <code>if</code>.</p>
 </blockquote>
-<h4 id="before-71"><a class="header" href="#before-71">Before</a></h4>
+<h4 id="before-72"><a class="header" href="#before-72">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     if┃ !y { A } else { B }
 }</code></pre>
-<h4 id="after-71"><a class="header" href="#after-71">After</a></h4>
+<h4 id="after-72"><a class="header" href="#after-72">After</a></h4>
 <pre><code class="language-rust">fn main() {
     if y { B } else { A }
 }</code></pre>
@@ -4171,10 +4232,10 @@ This also works with <code>!=</code>. This assist can only be applied with the c
 <blockquote>
 <p>Converts comments between block and single-line form.</p>
 </blockquote>
-<h4 id="before-72"><a class="header" href="#before-72">Before</a></h4>
+<h4 id="before-73"><a class="header" href="#before-73">Before</a></h4>
 <pre><code class="language-rust">   // Multi-line┃
    // comment</code></pre>
-<h4 id="after-72"><a class="header" href="#after-72">After</a></h4>
+<h4 id="after-73"><a class="header" href="#after-73">After</a></h4>
 <pre><code class="language-rust">  /*
   Multi-line
   comment
@@ -4184,11 +4245,11 @@ This also works with <code>!=</code>. This assist can only be applied with the c
 <blockquote>
 <p>Adds <code>r#</code> to a plain string literal.</p>
 </blockquote>
-<h4 id="before-73"><a class="header" href="#before-73">Before</a></h4>
+<h4 id="before-74"><a class="header" href="#before-74">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     &quot;Hello,┃ World!&quot;;
 }</code></pre>
-<h4 id="after-73"><a class="header" href="#after-73">After</a></h4>
+<h4 id="after-74"><a class="header" href="#after-74">After</a></h4>
 <pre><code class="language-rust">fn main() {
     r#&quot;Hello, World!&quot;#;
 }</code></pre>
@@ -4197,11 +4258,11 @@ This also works with <code>!=</code>. This assist can only be applied with the c
 <blockquote>
 <p>Turns a raw string into a plain string.</p>
 </blockquote>
-<h4 id="before-74"><a class="header" href="#before-74">Before</a></h4>
+<h4 id="before-75"><a class="header" href="#before-75">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     r#&quot;Hello,┃ &quot;World!&quot;&quot;#;
 }</code></pre>
-<h4 id="after-74"><a class="header" href="#after-74">After</a></h4>
+<h4 id="after-75"><a class="header" href="#after-75">After</a></h4>
 <pre><code class="language-rust">fn main() {
     &quot;Hello, \&quot;World!\&quot;&quot;;
 }</code></pre>
@@ -4210,17 +4271,17 @@ This also works with <code>!=</code>. This assist can only be applied with the c
 <blockquote>
 <p>Merges two imports with a common prefix.</p>
 </blockquote>
-<h4 id="before-75"><a class="header" href="#before-75">Before</a></h4>
+<h4 id="before-76"><a class="header" href="#before-76">Before</a></h4>
 <pre><code class="language-rust">use std::┃fmt::Formatter;
 use std::io;</code></pre>
-<h4 id="after-75"><a class="header" href="#after-75">After</a></h4>
+<h4 id="after-76"><a class="header" href="#after-76">After</a></h4>
 <pre><code class="language-rust">use std::{fmt::Formatter, io};</code></pre>
 <h3 id="merge_match_arms"><a class="header" href="#merge_match_arms">merge_match_arms</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/merge_match_arms.rs#L11">merge_match_arms.rs</a></p>
 <blockquote>
 <p>Merges the current match arm with the following if their bodies are identical.</p>
 </blockquote>
-<h4 id="before-76"><a class="header" href="#before-76">Before</a></h4>
+<h4 id="before-77"><a class="header" href="#before-77">Before</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4229,7 +4290,7 @@ fn handle(action: Action) {
         Action::Stop =&gt; foo(),
     }
 }</code></pre>
-<h4 id="after-76"><a class="header" href="#after-76">After</a></h4>
+<h4 id="after-77"><a class="header" href="#after-77">After</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4242,7 +4303,7 @@ fn handle(action: Action) {
 <blockquote>
 <p>Moves if expression from match arm body into a guard.</p>
 </blockquote>
-<h4 id="before-77"><a class="header" href="#before-77">Before</a></h4>
+<h4 id="before-78"><a class="header" href="#before-78">Before</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4251,7 +4312,7 @@ fn handle(action: Action) {
         _ =&gt; (),
     }
 }</code></pre>
-<h4 id="after-77"><a class="header" href="#after-77">After</a></h4>
+<h4 id="after-78"><a class="header" href="#after-78">After</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4265,11 +4326,11 @@ fn handle(action: Action) {
 <blockquote>
 <p>Moves inline type bounds to a where clause.</p>
 </blockquote>
-<h4 id="before-78"><a class="header" href="#before-78">Before</a></h4>
+<h4 id="before-79"><a class="header" href="#before-79">Before</a></h4>
 <pre><code class="language-rust">fn apply&lt;T, U, ┃F: FnOnce(T) -&gt; U&gt;(f: F, x: T) -&gt; U {
     f(x)
 }</code></pre>
-<h4 id="after-78"><a class="header" href="#after-78">After</a></h4>
+<h4 id="after-79"><a class="header" href="#after-79">After</a></h4>
 <pre><code class="language-rust">fn apply&lt;T, U, F&gt;(f: F, x: T) -&gt; U where F: FnOnce(T) -&gt; U {
     f(x)
 }</code></pre>
@@ -4279,7 +4340,7 @@ fn handle(action: Action) {
 <p>Move a local constant item in a method to impl's associated constant. All the references will be
 qualified with <code>Self::</code>.</p>
 </blockquote>
-<h4 id="before-79"><a class="header" href="#before-79">Before</a></h4>
+<h4 id="before-80"><a class="header" href="#before-80">Before</a></h4>
 <pre><code class="language-rust">struct S;
 impl S {
     fn foo() -&gt; usize {
@@ -4289,7 +4350,7 @@ impl S {
         C * C
     }
 }</code></pre>
-<h4 id="after-79"><a class="header" href="#after-79">After</a></h4>
+<h4 id="after-80"><a class="header" href="#after-80">After</a></h4>
 <pre><code class="language-rust">struct S;
 impl S {
     /// The answer.
@@ -4304,19 +4365,19 @@ impl S {
 <blockquote>
 <p>Moves xxx/mod.rs to xxx.rs.</p>
 </blockquote>
-<h4 id="before-80"><a class="header" href="#before-80">Before</a></h4>
+<h4 id="before-81"><a class="header" href="#before-81">Before</a></h4>
 <pre><code class="language-rust">//- /main.rs
 mod a;
 //- /a/mod.rs
 ┃fn t() {}┃</code></pre>
-<h4 id="after-80"><a class="header" href="#after-80">After</a></h4>
+<h4 id="after-81"><a class="header" href="#after-81">After</a></h4>
 <pre><code class="language-rust">fn t() {}</code></pre>
 <h3 id="move_guard_to_arm_body"><a class="header" href="#move_guard_to_arm_body">move_guard_to_arm_body</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/move_guard.rs#L8">move_guard.rs</a></p>
 <blockquote>
 <p>Moves match guard into match arm body.</p>
 </blockquote>
-<h4 id="before-81"><a class="header" href="#before-81">Before</a></h4>
+<h4 id="before-82"><a class="header" href="#before-82">Before</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4325,7 +4386,7 @@ fn handle(action: Action) {
         _ =&gt; (),
     }
 }</code></pre>
-<h4 id="after-81"><a class="header" href="#after-81">After</a></h4>
+<h4 id="after-82"><a class="header" href="#after-82">After</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4341,23 +4402,23 @@ fn handle(action: Action) {
 <blockquote>
 <p>Moves inline module's contents to a separate file.</p>
 </blockquote>
-<h4 id="before-82"><a class="header" href="#before-82">Before</a></h4>
+<h4 id="before-83"><a class="header" href="#before-83">Before</a></h4>
 <pre><code class="language-rust">mod ┃foo {
     fn t() {}
 }</code></pre>
-<h4 id="after-82"><a class="header" href="#after-82">After</a></h4>
+<h4 id="after-83"><a class="header" href="#after-83">After</a></h4>
 <pre><code class="language-rust">mod foo;</code></pre>
 <h3 id="move_to_mod_rs"><a class="header" href="#move_to_mod_rs">move_to_mod_rs</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/move_to_mod_rs.rs#L12">move_to_mod_rs.rs</a></p>
 <blockquote>
 <p>Moves xxx.rs to xxx/mod.rs.</p>
 </blockquote>
-<h4 id="before-83"><a class="header" href="#before-83">Before</a></h4>
+<h4 id="before-84"><a class="header" href="#before-84">Before</a></h4>
 <pre><code class="language-rust">//- /main.rs
 mod a;
 //- /a.rs
 ┃fn t() {}┃</code></pre>
-<h4 id="after-83"><a class="header" href="#after-83">After</a></h4>
+<h4 id="after-84"><a class="header" href="#after-84">After</a></h4>
 <pre><code class="language-rust">fn t() {}</code></pre>
 <h3 id="promote_local_to_const"><a class="header" href="#promote_local_to_const">promote_local_to_const</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/promote_local_to_const.rs#L19">promote_local_to_const.rs</a></p>
@@ -4365,7 +4426,7 @@ mod a;
 <p>Promotes a local variable to a const item changing its name to a <code>SCREAMING_SNAKE_CASE</code> variant
 if the local uses no non-const expressions.</p>
 </blockquote>
-<h4 id="before-84"><a class="header" href="#before-84">Before</a></h4>
+<h4 id="before-85"><a class="header" href="#before-85">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     let foo┃ = true;
 
@@ -4375,7 +4436,7 @@ if the local uses no non-const expressions.</p>
         println!(&quot;It's false&quot;);
     }
 }</code></pre>
-<h4 id="after-84"><a class="header" href="#after-84">After</a></h4>
+<h4 id="after-85"><a class="header" href="#after-85">After</a></h4>
 <pre><code class="language-rust">fn main() {
     const ┃FOO: bool = true;
 
@@ -4390,7 +4451,7 @@ if the local uses no non-const expressions.</p>
 <blockquote>
 <p>Extracts variable assignment to outside an if or match statement.</p>
 </blockquote>
-<h4 id="before-85"><a class="header" href="#before-85">Before</a></h4>
+<h4 id="before-86"><a class="header" href="#before-86">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     let mut foo = 6;
 
@@ -4400,7 +4461,7 @@ if the local uses no non-const expressions.</p>
         foo = 4;
     }
 }</code></pre>
-<h4 id="after-85"><a class="header" href="#after-85">After</a></h4>
+<h4 id="after-86"><a class="header" href="#after-86">After</a></h4>
 <pre><code class="language-rust">fn main() {
     let mut foo = 6;
 
@@ -4415,7 +4476,7 @@ if the local uses no non-const expressions.</p>
 <blockquote>
 <p>Replaces the method call with a qualified function call.</p>
 </blockquote>
-<h4 id="before-86"><a class="header" href="#before-86">Before</a></h4>
+<h4 id="before-87"><a class="header" href="#before-87">Before</a></h4>
 <pre><code class="language-rust">struct Foo;
 impl Foo {
     fn foo(&amp;self) {}
@@ -4424,7 +4485,7 @@ fn main() {
     let foo = Foo;
     foo.fo┃o();
 }</code></pre>
-<h4 id="after-86"><a class="header" href="#after-86">After</a></h4>
+<h4 id="after-87"><a class="header" href="#after-87">After</a></h4>
 <pre><code class="language-rust">struct Foo;
 impl Foo {
     fn foo(&amp;self) {}
@@ -4438,11 +4499,11 @@ fn main() {
 <blockquote>
 <p>If the name is unresolved, provides all possible qualified paths for it.</p>
 </blockquote>
-<h4 id="before-87"><a class="header" href="#before-87">Before</a></h4>
+<h4 id="before-88"><a class="header" href="#before-88">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     let map = HashMap┃::new();
 }</code></pre>
-<h4 id="after-87"><a class="header" href="#after-87">After</a></h4>
+<h4 id="after-88"><a class="header" href="#after-88">After</a></h4>
 <pre><code class="language-rust">fn main() {
     let map = std::collections::HashMap::new();
 }</code></pre>
@@ -4451,20 +4512,20 @@ fn main() {
 <blockquote>
 <p>Adds or removes separators from integer literal.</p>
 </blockquote>
-<h4 id="before-88"><a class="header" href="#before-88">Before</a></h4>
+<h4 id="before-89"><a class="header" href="#before-89">Before</a></h4>
 <pre><code class="language-rust">const _: i32 = 1012345┃;</code></pre>
-<h4 id="after-88"><a class="header" href="#after-88">After</a></h4>
+<h4 id="after-89"><a class="header" href="#after-89">After</a></h4>
 <pre><code class="language-rust">const _: i32 = 1_012_345;</code></pre>
 <h3 id="remove_dbg"><a class="header" href="#remove_dbg">remove_dbg</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/remove_dbg.rs#L9">remove_dbg.rs</a></p>
 <blockquote>
 <p>Removes <code>dbg!()</code> macro call.</p>
 </blockquote>
-<h4 id="before-89"><a class="header" href="#before-89">Before</a></h4>
+<h4 id="before-90"><a class="header" href="#before-90">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     let x = ┃dbg!(42 * dbg!(4 + 2));┃
 }</code></pre>
-<h4 id="after-89"><a class="header" href="#after-89">After</a></h4>
+<h4 id="after-90"><a class="header" href="#after-90">After</a></h4>
 <pre><code class="language-rust">fn main() {
     let x = 42 * (4 + 2);
 }</code></pre>
@@ -4473,11 +4534,11 @@ fn main() {
 <blockquote>
 <p>Removes a hash from a raw string literal.</p>
 </blockquote>
-<h4 id="before-90"><a class="header" href="#before-90">Before</a></h4>
+<h4 id="before-91"><a class="header" href="#before-91">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     r#&quot;Hello,┃ World!&quot;#;
 }</code></pre>
-<h4 id="after-90"><a class="header" href="#after-90">After</a></h4>
+<h4 id="after-91"><a class="header" href="#after-91">After</a></h4>
 <pre><code class="language-rust">fn main() {
     r&quot;Hello, World!&quot;;
 }</code></pre>
@@ -4486,11 +4547,11 @@ fn main() {
 <blockquote>
 <p>Removes the <code>mut</code> keyword.</p>
 </blockquote>
-<h4 id="before-91"><a class="header" href="#before-91">Before</a></h4>
+<h4 id="before-92"><a class="header" href="#before-92">Before</a></h4>
 <pre><code class="language-rust">impl Walrus {
     fn feed(&amp;mut┃ self, amount: u32) {}
 }</code></pre>
-<h4 id="after-91"><a class="header" href="#after-91">After</a></h4>
+<h4 id="after-92"><a class="header" href="#after-92">After</a></h4>
 <pre><code class="language-rust">impl Walrus {
     fn feed(&amp;self, amount: u32) {}
 }</code></pre>
@@ -4499,11 +4560,11 @@ fn main() {
 <blockquote>
 <p>Removes redundant parentheses.</p>
 </blockquote>
-<h4 id="before-92"><a class="header" href="#before-92">Before</a></h4>
+<h4 id="before-93"><a class="header" href="#before-93">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     _ = ┃(2) + 2;
 }</code></pre>
-<h4 id="after-92"><a class="header" href="#after-92">After</a></h4>
+<h4 id="after-93"><a class="header" href="#after-93">After</a></h4>
 <pre><code class="language-rust">fn main() {
     _ = 2 + 2;
 }</code></pre>
@@ -4512,13 +4573,13 @@ fn main() {
 <blockquote>
 <p>Removes unused function parameter.</p>
 </blockquote>
-<h4 id="before-93"><a class="header" href="#before-93">Before</a></h4>
+<h4 id="before-94"><a class="header" href="#before-94">Before</a></h4>
 <pre><code class="language-rust">fn frobnicate(x: i32┃) {}
 
 fn main() {
     frobnicate(92);
 }</code></pre>
-<h4 id="after-93"><a class="header" href="#after-93">After</a></h4>
+<h4 id="after-94"><a class="header" href="#after-94">After</a></h4>
 <pre><code class="language-rust">fn frobnicate() {}
 
 fn main() {
@@ -4530,10 +4591,10 @@ fn main() {
 <p>Reorder the fields of record literals and record patterns in the same order as in
 the definition.</p>
 </blockquote>
-<h4 id="before-94"><a class="header" href="#before-94">Before</a></h4>
+<h4 id="before-95"><a class="header" href="#before-95">Before</a></h4>
 <pre><code class="language-rust">struct Foo {foo: i32, bar: i32};
 const test: Foo = ┃Foo {bar: 0, foo: 1}</code></pre>
-<h4 id="after-94"><a class="header" href="#after-94">After</a></h4>
+<h4 id="after-95"><a class="header" href="#after-95">After</a></h4>
 <pre><code class="language-rust">struct Foo {foo: i32, bar: i32};
 const test: Foo = Foo {foo: 1, bar: 0}</code></pre>
 <h3 id="reorder_impl_items"><a class="header" href="#reorder_impl_items">reorder_impl_items</a></h3>
@@ -4542,7 +4603,7 @@ const test: Foo = Foo {foo: 1, bar: 0}</code></pre>
 <p>Reorder the items of an <code>impl Trait</code>. The items will be ordered
 in the same order as in the trait definition.</p>
 </blockquote>
-<h4 id="before-95"><a class="header" href="#before-95">Before</a></h4>
+<h4 id="before-96"><a class="header" href="#before-96">Before</a></h4>
 <pre><code class="language-rust">trait Foo {
     type A;
     const B: u8;
@@ -4555,7 +4616,7 @@ struct Bar;
     fn c() {}
     type A = String;
 }</code></pre>
-<h4 id="after-95"><a class="header" href="#after-95">After</a></h4>
+<h4 id="after-96"><a class="header" href="#after-96">After</a></h4>
 <pre><code class="language-rust">trait Foo {
     type A;
     const B: u8;
@@ -4573,11 +4634,11 @@ impl Foo for Bar {
 <blockquote>
 <p>Replaces arithmetic on integers with the <code>checked_*</code> equivalent.</p>
 </blockquote>
-<h4 id="before-96"><a class="header" href="#before-96">Before</a></h4>
+<h4 id="before-97"><a class="header" href="#before-97">Before</a></h4>
 <pre><code class="language-rust">fn main() {
   let x = 1 ┃+ 2;
 }</code></pre>
-<h4 id="after-96"><a class="header" href="#after-96">After</a></h4>
+<h4 id="after-97"><a class="header" href="#after-97">After</a></h4>
 <pre><code class="language-rust">fn main() {
   let x = 1.checked_add(2);
 }</code></pre>
@@ -4586,11 +4647,11 @@ impl Foo for Bar {
 <blockquote>
 <p>Replaces arithmetic on integers with the <code>saturating_*</code> equivalent.</p>
 </blockquote>
-<h4 id="before-97"><a class="header" href="#before-97">Before</a></h4>
+<h4 id="before-98"><a class="header" href="#before-98">Before</a></h4>
 <pre><code class="language-rust">fn main() {
   let x = 1 ┃+ 2;
 }</code></pre>
-<h4 id="after-97"><a class="header" href="#after-97">After</a></h4>
+<h4 id="after-98"><a class="header" href="#after-98">After</a></h4>
 <pre><code class="language-rust">fn main() {
   let x = 1.saturating_add(2);
 }</code></pre>
@@ -4599,11 +4660,11 @@ impl Foo for Bar {
 <blockquote>
 <p>Replaces arithmetic on integers with the <code>wrapping_*</code> equivalent.</p>
 </blockquote>
-<h4 id="before-98"><a class="header" href="#before-98">Before</a></h4>
+<h4 id="before-99"><a class="header" href="#before-99">Before</a></h4>
 <pre><code class="language-rust">fn main() {
   let x = 1 ┃+ 2;
 }</code></pre>
-<h4 id="after-98"><a class="header" href="#after-98">After</a></h4>
+<h4 id="after-99"><a class="header" href="#after-99">After</a></h4>
 <pre><code class="language-rust">fn main() {
   let x = 1.wrapping_add(2);
 }</code></pre>
@@ -4612,11 +4673,11 @@ impl Foo for Bar {
 <blockquote>
 <p>Replace a char literal with a string literal.</p>
 </blockquote>
-<h4 id="before-99"><a class="header" href="#before-99">Before</a></h4>
+<h4 id="before-100"><a class="header" href="#before-100">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     find('{┃');
 }</code></pre>
-<h4 id="after-99"><a class="header" href="#after-99">After</a></h4>
+<h4 id="after-100"><a class="header" href="#after-100">After</a></h4>
 <pre><code class="language-rust">fn main() {
     find(&quot;{&quot;);
 }</code></pre>
@@ -4625,10 +4686,10 @@ impl Foo for Bar {
 <blockquote>
 <p>Converts a <code>derive</code> impl into a manual one.</p>
 </blockquote>
-<h4 id="before-100"><a class="header" href="#before-100">Before</a></h4>
+<h4 id="before-101"><a class="header" href="#before-101">Before</a></h4>
 <pre><code class="language-rust">#[derive(Deb┃ug, Display)]
 struct S;</code></pre>
-<h4 id="after-100"><a class="header" href="#after-100">After</a></h4>
+<h4 id="after-101"><a class="header" href="#after-101">After</a></h4>
 <pre><code class="language-rust">#[derive(Display)]
 struct S;
 
@@ -4642,7 +4703,7 @@ impl Debug for S {
 <blockquote>
 <p>Replaces a <code>if let</code> expression with a <code>match</code> expression.</p>
 </blockquote>
-<h4 id="before-101"><a class="header" href="#before-101">Before</a></h4>
+<h4 id="before-102"><a class="header" href="#before-102">Before</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4652,7 +4713,7 @@ fn handle(action: Action) {
         bar()
     }
 }</code></pre>
-<h4 id="after-101"><a class="header" href="#after-101">After</a></h4>
+<h4 id="after-102"><a class="header" href="#after-102">After</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4666,14 +4727,14 @@ fn handle(action: Action) {
 <blockquote>
 <p>Replaces <code>let</code> with an <code>if let</code>.</p>
 </blockquote>
-<h4 id="before-102"><a class="header" href="#before-102">Before</a></h4>
+<h4 id="before-103"><a class="header" href="#before-103">Before</a></h4>
 <pre><code class="language-rust">
 fn main(action: Action) {
     ┃let x = compute();
 }
 
 fn compute() -&gt; Option&lt;i32&gt; { None }</code></pre>
-<h4 id="after-102"><a class="header" href="#after-102">After</a></h4>
+<h4 id="after-103"><a class="header" href="#after-103">After</a></h4>
 <pre><code class="language-rust">
 fn main(action: Action) {
     if let Some(x) = compute() {
@@ -4686,7 +4747,7 @@ fn compute() -&gt; Option&lt;i32&gt; { None }</code></pre>
 <blockquote>
 <p>Replaces a binary <code>match</code> with a wildcard pattern and no guards with an <code>if let</code> expression.</p>
 </blockquote>
-<h4 id="before-103"><a class="header" href="#before-103">Before</a></h4>
+<h4 id="before-104"><a class="header" href="#before-104">Before</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4695,7 +4756,7 @@ fn handle(action: Action) {
         _ =&gt; bar(),
     }
 }</code></pre>
-<h4 id="after-103"><a class="header" href="#after-103">After</a></h4>
+<h4 id="after-104"><a class="header" href="#after-104">After</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4710,18 +4771,18 @@ fn handle(action: Action) {
 <blockquote>
 <p>Replaces named generic with an <code>impl Trait</code> in function argument.</p>
 </blockquote>
-<h4 id="before-104"><a class="header" href="#before-104">Before</a></h4>
+<h4 id="before-105"><a class="header" href="#before-105">Before</a></h4>
 <pre><code class="language-rust">fn new&lt;P┃: AsRef&lt;Path&gt;&gt;(location: P) -&gt; Self {}</code></pre>
-<h4 id="after-104"><a class="header" href="#after-104">After</a></h4>
+<h4 id="after-105"><a class="header" href="#after-105">After</a></h4>
 <pre><code class="language-rust">fn new(location: impl AsRef&lt;Path&gt;) -&gt; Self {}</code></pre>
 <h3 id="replace_qualified_name_with_use"><a class="header" href="#replace_qualified_name_with_use">replace_qualified_name_with_use</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/replace_qualified_name_with_use.rs#L13">replace_qualified_name_with_use.rs</a></p>
 <blockquote>
 <p>Adds a use statement for a given fully-qualified name.</p>
 </blockquote>
-<h4 id="before-105"><a class="header" href="#before-105">Before</a></h4>
+<h4 id="before-106"><a class="header" href="#before-106">Before</a></h4>
 <pre><code class="language-rust">fn process(map: std::collections::┃HashMap&lt;String, String&gt;) {}</code></pre>
-<h4 id="after-105"><a class="header" href="#after-105">After</a></h4>
+<h4 id="after-106"><a class="header" href="#after-106">After</a></h4>
 <pre><code class="language-rust">use std::collections::HashMap;
 
 fn process(map: HashMap&lt;String, String&gt;) {}</code></pre>
@@ -4730,11 +4791,11 @@ fn process(map: HashMap&lt;String, String&gt;) {}</code></pre>
 <blockquote>
 <p>Replace string literal with char literal.</p>
 </blockquote>
-<h4 id="before-106"><a class="header" href="#before-106">Before</a></h4>
+<h4 id="before-107"><a class="header" href="#before-107">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     find(&quot;{┃&quot;);
 }</code></pre>
-<h4 id="after-106"><a class="header" href="#after-106">After</a></h4>
+<h4 id="after-107"><a class="header" href="#after-107">After</a></h4>
 <pre><code class="language-rust">fn main() {
     find('{');
 }</code></pre>
@@ -4743,11 +4804,11 @@ fn process(map: HashMap&lt;String, String&gt;) {}</code></pre>
 <blockquote>
 <p>Replaces a <code>try</code> expression with a <code>match</code> expression.</p>
 </blockquote>
-<h4 id="before-107"><a class="header" href="#before-107">Before</a></h4>
+<h4 id="before-108"><a class="header" href="#before-108">Before</a></h4>
 <pre><code class="language-rust">fn handle() {
     let pat = Some(true)┃?;
 }</code></pre>
-<h4 id="after-107"><a class="header" href="#after-107">After</a></h4>
+<h4 id="after-108"><a class="header" href="#after-108">After</a></h4>
 <pre><code class="language-rust">fn handle() {
     let pat = match Some(true) {
         Some(it) =&gt; it,
@@ -4759,12 +4820,12 @@ fn process(map: HashMap&lt;String, String&gt;) {}</code></pre>
 <blockquote>
 <p>Converts <code>::&lt;_&gt;</code> to an explicit type assignment.</p>
 </blockquote>
-<h4 id="before-108"><a class="header" href="#before-108">Before</a></h4>
+<h4 id="before-109"><a class="header" href="#before-109">Before</a></h4>
 <pre><code class="language-rust">fn make&lt;T&gt;() -&gt; T { ) }
 fn main() {
     let a = make┃::&lt;i32&gt;();
 }</code></pre>
-<h4 id="after-108"><a class="header" href="#after-108">After</a></h4>
+<h4 id="after-109"><a class="header" href="#after-109">After</a></h4>
 <pre><code class="language-rust">fn make&lt;T&gt;() -&gt; T { ) }
 fn main() {
     let a: i32 = make();
@@ -4774,12 +4835,12 @@ fn main() {
 <blockquote>
 <p>Replace <code>unwrap_or_else</code> with <code>unwrap_or</code> and <code>ok_or_else</code> with <code>ok_or</code>.</p>
 </blockquote>
-<h4 id="before-109"><a class="header" href="#before-109">Before</a></h4>
+<h4 id="before-110"><a class="header" href="#before-110">Before</a></h4>
 <pre><code class="language-rust">fn foo() {
     let a = Some(1);
     a.unwra┃p_or_else(|| 2);
 }</code></pre>
-<h4 id="after-109"><a class="header" href="#after-109">After</a></h4>
+<h4 id="after-110"><a class="header" href="#after-110">After</a></h4>
 <pre><code class="language-rust">fn foo() {
     let a = Some(1);
     a.unwrap_or(2);
@@ -4789,12 +4850,12 @@ fn main() {
 <blockquote>
 <p>Replace <code>unwrap_or</code> with <code>unwrap_or_else</code> and <code>ok_or</code> with <code>ok_or_else</code>.</p>
 </blockquote>
-<h4 id="before-110"><a class="header" href="#before-110">Before</a></h4>
+<h4 id="before-111"><a class="header" href="#before-111">Before</a></h4>
 <pre><code class="language-rust">fn foo() {
     let a = Some(1);
     a.unwra┃p_or(2);
 }</code></pre>
-<h4 id="after-110"><a class="header" href="#after-110">After</a></h4>
+<h4 id="after-111"><a class="header" href="#after-111">After</a></h4>
 <pre><code class="language-rust">fn foo() {
     let a = Some(1);
     a.unwrap_or_else(|| 2);
@@ -4804,19 +4865,19 @@ fn main() {
 <blockquote>
 <p>Sorts item members alphabetically: fields, enum variants and methods.</p>
 </blockquote>
-<h4 id="before-111"><a class="header" href="#before-111">Before</a></h4>
+<h4 id="before-112"><a class="header" href="#before-112">Before</a></h4>
 <pre><code class="language-rust">struct ┃Foo┃ { second: u32, first: String }</code></pre>
-<h4 id="after-111"><a class="header" href="#after-111">After</a></h4>
+<h4 id="after-112"><a class="header" href="#after-112">After</a></h4>
 <pre><code class="language-rust">struct Foo { first: String, second: u32 }</code></pre>
 <blockquote>
 <hr />
 </blockquote>
-<h4 id="before-112"><a class="header" href="#before-112">Before</a></h4>
+<h4 id="before-113"><a class="header" href="#before-113">Before</a></h4>
 <pre><code class="language-rust">trait ┃Bar┃ {
     fn second(&amp;self) -&gt; u32;
     fn first(&amp;self) -&gt; String;
 }</code></pre>
-<h4 id="after-112"><a class="header" href="#after-112">After</a></h4>
+<h4 id="after-113"><a class="header" href="#after-113">After</a></h4>
 <pre><code class="language-rust">trait Bar {
     fn first(&amp;self) -&gt; String;
     fn second(&amp;self) -&gt; u32;
@@ -4824,13 +4885,13 @@ fn main() {
 <blockquote>
 <hr />
 </blockquote>
-<h4 id="before-113"><a class="header" href="#before-113">Before</a></h4>
+<h4 id="before-114"><a class="header" href="#before-114">Before</a></h4>
 <pre><code class="language-rust">struct Baz;
 impl ┃Baz┃ {
     fn second(&amp;self) -&gt; u32;
     fn first(&amp;self) -&gt; String;
 }</code></pre>
-<h4 id="after-113"><a class="header" href="#after-113">After</a></h4>
+<h4 id="after-114"><a class="header" href="#after-114">After</a></h4>
 <pre><code class="language-rust">struct Baz;
 impl Baz {
     fn first(&amp;self) -&gt; String;
@@ -4840,12 +4901,12 @@ impl Baz {
 <hr />
 </blockquote>
 <p>There is a difference between sorting enum variants:</p>
-<h4 id="before-114"><a class="header" href="#before-114">Before</a></h4>
+<h4 id="before-115"><a class="header" href="#before-115">Before</a></h4>
 <pre><code class="language-rust">enum ┃Animal┃ {
   Dog(String, f64),
   Cat { weight: f64, name: String },
 }</code></pre>
-<h4 id="after-114"><a class="header" href="#after-114">After</a></h4>
+<h4 id="after-115"><a class="header" href="#after-115">After</a></h4>
 <pre><code class="language-rust">enum Animal {
   Cat { weight: f64, name: String },
   Dog(String, f64),
@@ -4853,12 +4914,12 @@ impl Baz {
 <blockquote>
 <p>and sorting a single enum struct variant:</p>
 </blockquote>
-<h4 id="before-115"><a class="header" href="#before-115">Before</a></h4>
+<h4 id="before-116"><a class="header" href="#before-116">Before</a></h4>
 <pre><code class="language-rust">enum Animal {
   Dog(String, f64),
   Cat ┃{ weight: f64, name: String }┃,
 }</code></pre>
-<h4 id="after-115"><a class="header" href="#after-115">After</a></h4>
+<h4 id="after-116"><a class="header" href="#after-116">After</a></h4>
 <pre><code class="language-rust">enum Animal {
   Dog(String, f64),
   Cat { name: String, weight: f64 },
@@ -4868,21 +4929,21 @@ impl Baz {
 <blockquote>
 <p>Wraps the tail of import into braces.</p>
 </blockquote>
-<h4 id="before-116"><a class="header" href="#before-116">Before</a></h4>
+<h4 id="before-117"><a class="header" href="#before-117">Before</a></h4>
 <pre><code class="language-rust">use std::┃collections::HashMap;</code></pre>
-<h4 id="after-116"><a class="header" href="#after-116">After</a></h4>
+<h4 id="after-117"><a class="header" href="#after-117">After</a></h4>
 <pre><code class="language-rust">use std::{collections::HashMap};</code></pre>
 <h3 id="toggle_ignore"><a class="header" href="#toggle_ignore">toggle_ignore</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/toggle_ignore.rs#L8">toggle_ignore.rs</a></p>
 <blockquote>
 <p>Adds <code>#[ignore]</code> attribute to the test.</p>
 </blockquote>
-<h4 id="before-117"><a class="header" href="#before-117">Before</a></h4>
+<h4 id="before-118"><a class="header" href="#before-118">Before</a></h4>
 <pre><code class="language-rust">┃#[test]
 fn arithmetics {
     assert_eq!(2 + 2, 5);
 }</code></pre>
-<h4 id="after-117"><a class="header" href="#after-117">After</a></h4>
+<h4 id="after-118"><a class="header" href="#after-118">After</a></h4>
 <pre><code class="language-rust">#[test]
 #[ignore]
 fn arithmetics {
@@ -4893,7 +4954,7 @@ fn arithmetics {
 <blockquote>
 <p>Splits the current match with a <code>|</code> pattern into two arms with identical bodies.</p>
 </blockquote>
-<h4 id="before-118"><a class="header" href="#before-118">Before</a></h4>
+<h4 id="before-119"><a class="header" href="#before-119">Before</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4901,7 +4962,7 @@ fn handle(action: Action) {
         Action::Move(..) ┃| Action::Stop =&gt; foo(),
     }
 }</code></pre>
-<h4 id="after-118"><a class="header" href="#after-118">After</a></h4>
+<h4 id="after-119"><a class="header" href="#after-119">After</a></h4>
 <pre><code class="language-rust">enum Action { Move { distance: u32 }, Stop }
 
 fn handle(action: Action) {
@@ -4915,9 +4976,9 @@ fn handle(action: Action) {
 <blockquote>
 <p>Extracts single use item from use list.</p>
 </blockquote>
-<h4 id="before-119"><a class="header" href="#before-119">Before</a></h4>
+<h4 id="before-120"><a class="header" href="#before-120">Before</a></h4>
 <pre><code class="language-rust">use std::fmt::{Debug, Display┃};</code></pre>
-<h4 id="after-119"><a class="header" href="#after-119">After</a></h4>
+<h4 id="after-120"><a class="header" href="#after-120">After</a></h4>
 <pre><code class="language-rust">use std::fmt::{Debug};
 use std::fmt::Display;</code></pre>
 <h3 id="unnecessary_async"><a class="header" href="#unnecessary_async">unnecessary_async</a></h3>
@@ -4926,10 +4987,10 @@ use std::fmt::Display;</code></pre>
 <p>Removes the <code>async</code> mark from functions which have no <code>.await</code> in their body.
 Looks for calls to the functions and removes the <code>.await</code> on the call site.</p>
 </blockquote>
-<h4 id="before-120"><a class="header" href="#before-120">Before</a></h4>
+<h4 id="before-121"><a class="header" href="#before-121">Before</a></h4>
 <pre><code class="language-rust">pub async f┃n foo() {}
 pub async fn bar() { foo().await }</code></pre>
-<h4 id="after-120"><a class="header" href="#after-120">After</a></h4>
+<h4 id="after-121"><a class="header" href="#after-121">After</a></h4>
 <pre><code class="language-rust">pub fn foo() {}
 pub async fn bar() { foo() }</code></pre>
 <h3 id="unqualify_method_call"><a class="header" href="#unqualify_method_call">unqualify_method_call</a></h3>
@@ -4937,11 +4998,11 @@ pub async fn bar() { foo() }</code></pre>
 <blockquote>
 <p>Transforms universal function call syntax into a method call.</p>
 </blockquote>
-<h4 id="before-121"><a class="header" href="#before-121">Before</a></h4>
+<h4 id="before-122"><a class="header" href="#before-122">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     std::ops::Add::add┃(1, 2);
 }</code></pre>
-<h4 id="after-121"><a class="header" href="#after-121">After</a></h4>
+<h4 id="after-122"><a class="header" href="#after-122">After</a></h4>
 <pre><code class="language-rust">fn main() {
     1.add(2);
 }</code></pre>
@@ -4950,13 +5011,13 @@ pub async fn bar() { foo() }</code></pre>
 <blockquote>
 <p>This assist removes if...else, for, while and loop control statements to just keep the body.</p>
 </blockquote>
-<h4 id="before-122"><a class="header" href="#before-122">Before</a></h4>
+<h4 id="before-123"><a class="header" href="#before-123">Before</a></h4>
 <pre><code class="language-rust">fn foo() {
     if true {┃
         println!(&quot;foo&quot;);
     }
 }</code></pre>
-<h4 id="after-122"><a class="header" href="#after-122">After</a></h4>
+<h4 id="after-123"><a class="header" href="#after-123">After</a></h4>
 <pre><code class="language-rust">fn foo() {
     println!(&quot;foo&quot;);
 }</code></pre>
@@ -4965,20 +5026,20 @@ pub async fn bar() { foo() }</code></pre>
 <blockquote>
 <p>Unwrap the function's return type.</p>
 </blockquote>
-<h4 id="before-123"><a class="header" href="#before-123">Before</a></h4>
+<h4 id="before-124"><a class="header" href="#before-124">Before</a></h4>
 <pre><code class="language-rust">fn foo() -&gt; Result&lt;i32&gt;┃ { Ok(42i32) }</code></pre>
-<h4 id="after-123"><a class="header" href="#after-123">After</a></h4>
+<h4 id="after-124"><a class="header" href="#after-124">After</a></h4>
 <pre><code class="language-rust">fn foo() -&gt; i32 { 42i32 }</code></pre>
 <h3 id="unwrap_tuple"><a class="header" href="#unwrap_tuple">unwrap_tuple</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-assists/src/handlers/unwrap_tuple.rs#L8">unwrap_tuple.rs</a></p>
 <blockquote>
 <p>Unwrap the tuple to different variables.</p>
 </blockquote>
-<h4 id="before-124"><a class="header" href="#before-124">Before</a></h4>
+<h4 id="before-125"><a class="header" href="#before-125">Before</a></h4>
 <pre><code class="language-rust">fn main() {
     ┃let (foo, bar) = (&quot;Foo&quot;, &quot;Bar&quot;);
 }</code></pre>
-<h4 id="after-124"><a class="header" href="#after-124">After</a></h4>
+<h4 id="after-125"><a class="header" href="#after-125">After</a></h4>
 <pre><code class="language-rust">fn main() {
     let foo = &quot;Foo&quot;;
     let bar = &quot;Bar&quot;;
@@ -4988,9 +5049,9 @@ pub async fn bar() { foo() }</code></pre>
 <blockquote>
 <p>Wrap the function's return type into Result.</p>
 </blockquote>
-<h4 id="before-125"><a class="header" href="#before-125">Before</a></h4>
+<h4 id="before-126"><a class="header" href="#before-126">Before</a></h4>
 <pre><code class="language-rust">fn foo() -&gt; i32┃ { 42i32 }</code></pre>
-<h4 id="after-125"><a class="header" href="#after-125">After</a></h4>
+<h4 id="after-126"><a class="header" href="#after-126">After</a></h4>
 <pre><code class="language-rust">fn foo() -&gt; Result&lt;i32, ${0:_}&gt; { Ok(42i32) }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="diagnostics"><a class="header" href="#diagnostics">Diagnostics</a></h1>
 <ul>
@@ -5052,7 +5113,7 @@ pub async fn bar() { foo() }</code></pre>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-diagnostics/src/handlers/macro_error.rs#L3">macro_error.rs</a></p>
 <p>This diagnostic is shown for macro expansion errors.</p>
 <h3 id="macro-error-1"><a class="header" href="#macro-error-1">macro-error</a></h3>
-<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-diagnostics/src/handlers/macro_error.rs#L12">macro_error.rs</a></p>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-diagnostics/src/handlers/macro_error.rs#L17">macro_error.rs</a></p>
 <p>This diagnostic is shown for macro expansion errors.</p>
 <h3 id="malformed-derive"><a class="header" href="#malformed-derive">malformed-derive</a></h3>
 <p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-diagnostics/src/handlers/malformed_derive.rs#L3">malformed_derive.rs</a></p>
@@ -5142,7 +5203,7 @@ but can also indicate project setup problems.</p>
 <code>rust-analyzer.diagnostics.disabled</code> list to prevent them from showing. Alternatively you can
 enable support for procedural macros (see <code>rust-analyzer.procMacro.attributes.enable</code>).</p>
 <h3 id="unused-mut"><a class="header" href="#unused-mut">unused-mut</a></h3>
-<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-diagnostics/src/handlers/mutability_errors.rs#L43">mutability_errors.rs</a></p>
+<p><strong>Source:</strong> <a href="https://github.com/rust-lang/rust-analyzer/blob/master/crates/ide-diagnostics/src/handlers/mutability_errors.rs#L45">mutability_errors.rs</a></p>
 <p>This diagnostic is triggered when a mutable variable isn't actually mutated.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="editor-features"><a class="header" href="#editor-features">Editor Features</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vs-code-2"><a class="header" href="#vs-code-2">VS Code</a></h1>
@@ -7681,7 +7742,7 @@ To apply changes to an already running debug process, press <kbd>Ctrl+Shift+P</k
 It's <code>lldb.adapterType</code> in settings file.</p>
 <p>If you're running <code>lldb</code> version 7, change the lldb adapter type to <code>bundled</code> or <code>native</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><!---
-lsp_ext.rs hash: 2d60bbffe70ae198
+lsp_ext.rs hash: 149a5be3c5e469d1
 
 If you need to change the above hash to make the test pass, please check if you
 need to adjust this doc as well and ping this issue:
