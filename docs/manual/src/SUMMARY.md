@@ -1,0 +1,46 @@
+# Summary
+
+[Introduction](README.md)
+[Quick Start](quickstart.md)
+
+---
+
+- [Installation](installation/README.md)
+  - [Toolchain](installation/toolchain.md)
+  - [VS Code](installation/vscode.md)
+  - [Language Server Binary](installation/server_binary.md)
+  - [Emacs](installation/emacs.md)
+  - [Vim/NeoVim](installation/vim_neovim.md)
+  - [Sublime Text](installation/sublime_text.md)
+  - [GNOME Builder](installation/gnome_builder.md)
+  - [Eclipse IDE](installation/eclipse_ide.md)
+  - [Kate Text Editor](installation/kate_text_editor.md)
+  - [juCi++](installation/juci++.md)
+  - [Kakoune](installation/kakoune.md)
+  - [Helix](installation/helix.md)
+  - [Visual Studio 2022](installation/visual_studio_2022.md)
+  - [Lapce](installation/lapce.md)
+  - [Crates](installation/crates.md)
+- [Troubleshooting](troubleshooting.md)
+- [Configuration](configuration/README.md)
+- [Non-Cargo Based Projects](non_cargo_based_projects.md)
+- [Security](security.md)
+- [Privacy](privacy.md)
+- [Features](features/README.md)
+- [Assists (Code Actions)](assists/README.md)
+- [Diagnostics](diagnostics/README.md)
+- [Editor Features](editor_features/README.md)
+  - [VS Code](editor_features/vscode.md)
+- [Contributing](contributing/README.md)
+  - [Guide](contributing/guide.md)
+  - [Architecture](contributing/architecture.md)
+  - [Style](contributing/style.md)
+  - [Syntax](contributing/syntax.md)
+  - [Debugging](contributing/debugging.md)
+  - [LSP Extensions](contributing/lsp-extensions.md)
+
+---
+
+[Sponsors](sponsors.md)
+[Communication](communication.md)
+[License](license.md)

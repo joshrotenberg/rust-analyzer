@@ -41,8 +41,11 @@ fn check_lsp_extensions_docs() {
     };
 
     let actual_hash = {
-        let lsp_extensions_md =
-            sh.read_file(sourcegen::project_root().join("docs/dev/lsp-extensions.md")).unwrap();
+        let lsp_extensions_md = sh
+            .read_file(
+                sourcegen::project_root().join("docs/manual/src/contributing/lsp-extensions.md"),
+            )
+            .unwrap();
         let text = lsp_extensions_md
             .lines()
             .find_map(|line| line.strip_prefix("lsp/ext.rs hash:"))
@@ -158,7 +161,7 @@ Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT
 Apache-2.0/MIT
 BSD-3-Clause
 BlueOak-1.0.0 OR MIT OR Apache-2.0
-CC0-1.0 OR Artistic-2.0
+CC0-1.0
 ISC
 MIT
 MIT / Apache-2.0

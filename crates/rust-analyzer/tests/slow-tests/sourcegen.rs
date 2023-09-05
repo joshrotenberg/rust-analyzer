@@ -13,7 +13,7 @@ fn sourcegen_feature_docs() {
 ",
         contents.trim()
     );
-    let dst = sourcegen::project_root().join("docs/user/generated_features.adoc");
+    let dst = sourcegen::project_root().join("docs/manual/generated/features.md");
     fs::write(dst, contents).unwrap();
 }
 
