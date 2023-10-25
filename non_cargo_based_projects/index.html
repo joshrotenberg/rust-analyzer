@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Non-Cargo Based Projects - The Rust Analyzer Book</title>
+        <title>Non-Cargo Based Projects - rust-analyzer</title>
 
 
         <!-- Custom HTML head -->
@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -37,7 +37,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><a href="index.html">Introduction</a></li><li class="chapter-item affix "><a href="quickstart.html">Quick Start</a></li><li class="spacer"></li><li class="chapter-item "><a href="installation/index.html"><strong aria-hidden="true">1.</strong> Installation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="installation/toolchain.html"><strong aria-hidden="true">1.1.</strong> Toolchain</a></li><li class="chapter-item "><a href="installation/vscode.html"><strong aria-hidden="true">1.2.</strong> VS Code</a></li><li class="chapter-item "><a href="installation/server_binary.html"><strong aria-hidden="true">1.3.</strong> Language Server Binary</a></li><li class="chapter-item "><a href="installation/emacs.html"><strong aria-hidden="true">1.4.</strong> Emacs</a></li><li class="chapter-item "><a href="installation/vim_neovim.html"><strong aria-hidden="true">1.5.</strong> Vim/NeoVim</a></li><li class="chapter-item "><a href="installation/sublime_text.html"><strong aria-hidden="true">1.6.</strong> Sublime Text</a></li><li class="chapter-item "><a href="installation/gnome_builder.html"><strong aria-hidden="true">1.7.</strong> GNOME Builder</a></li><li class="chapter-item "><a href="installation/eclipse_ide.html"><strong aria-hidden="true">1.8.</strong> Eclipse IDE</a></li><li class="chapter-item "><a href="installation/kate_text_editor.html"><strong aria-hidden="true">1.9.</strong> Kate Text Editor</a></li><li class="chapter-item "><a href="installation/juci++.html"><strong aria-hidden="true">1.10.</strong> juCi++</a></li><li class="chapter-item "><a href="installation/kakoune.html"><strong aria-hidden="true">1.11.</strong> Kakoune</a></li><li class="chapter-item "><a href="installation/helix.html"><strong aria-hidden="true">1.12.</strong> Helix</a></li><li class="chapter-item "><a href="installation/visual_studio_2022.html"><strong aria-hidden="true">1.13.</strong> Visual Studio 2022</a></li><li class="chapter-item "><a href="installation/lapce.html"><strong aria-hidden="true">1.14.</strong> Lapce</a></li><li class="chapter-item "><a href="installation/crates.html"><strong aria-hidden="true">1.15.</strong> Crates</a></li></ol></li><li class="chapter-item "><a href="troubleshooting.html"><strong aria-hidden="true">2.</strong> Troubleshooting</a></li><li class="chapter-item "><a href="configuration/index.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="non_cargo_based_projects.html" class="active"><strong aria-hidden="true">4.</strong> Non-Cargo Based Projects</a></li><li class="chapter-item "><a href="security.html"><strong aria-hidden="true">5.</strong> Security</a></li><li class="chapter-item "><a href="privacy.html"><strong aria-hidden="true">6.</strong> Privacy</a></li><li class="chapter-item "><a href="features/index.html"><strong aria-hidden="true">7.</strong> Features</a></li><li class="chapter-item "><a href="assists/index.html"><strong aria-hidden="true">8.</strong> Assists (Code Actions)</a></li><li class="chapter-item "><a href="diagnostics/index.html"><strong aria-hidden="true">9.</strong> Diagnostics</a></li><li class="chapter-item "><a href="editor_features/index.html"><strong aria-hidden="true">10.</strong> Editor Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="editor_features/vscode.html"><strong aria-hidden="true">10.1.</strong> VS Code</a></li></ol></li><li class="chapter-item "><a href="contributing/index.html"><strong aria-hidden="true">11.</strong> Contributing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="contributing/guide.html"><strong aria-hidden="true">11.1.</strong> Guide</a></li><li class="chapter-item "><a href="contributing/architecture.html"><strong aria-hidden="true">11.2.</strong> Architecture</a></li><li class="chapter-item "><a href="contributing/style.html"><strong aria-hidden="true">11.3.</strong> Style</a></li><li class="chapter-item "><a href="contributing/syntax.html"><strong aria-hidden="true">11.4.</strong> Syntax</a></li><li class="chapter-item "><a href="contributing/debugging.html"><strong aria-hidden="true">11.5.</strong> Debugging</a></li><li class="chapter-item "><a href="contributing/lsp-extensions.html"><strong aria-hidden="true">11.6.</strong> LSP Extensions</a></li><li class="spacer"></li></ol></li><li class="chapter-item "><a href="sponsors.html">Sponsors</a></li><li class="chapter-item affix "><a href="communication.html">Communication</a></li><li class="chapter-item affix "><a href="license.html">License</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../installation/index.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../troubleshooting/index.html"><strong aria-hidden="true">3.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="../configuration/index.html"><strong aria-hidden="true">4.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../non_cargo_based_projects/index.html" class="active"><strong aria-hidden="true">5.</strong> Non-Cargo Based Projects</a></li><li class="chapter-item expanded "><a href="../security/index.html"><strong aria-hidden="true">6.</strong> Security</a></li><li class="chapter-item expanded "><a href="../privacy/index.html"><strong aria-hidden="true">7.</strong> Privacy</a></li><li class="chapter-item expanded "><a href="../features/index.html"><strong aria-hidden="true">8.</strong> Features</a></li><li class="chapter-item expanded "><a href="../assists/index.html"><strong aria-hidden="true">9.</strong> Assists (Code Actions)</a></li><li class="chapter-item expanded "><a href="../diagnostics/index.html"><strong aria-hidden="true">10.</strong> Diagnostics</a></li><li class="chapter-item expanded "><a href="../editor_features/index.html"><strong aria-hidden="true">11.</strong> Editor Features</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -114,16 +114,16 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Rust Analyzer Book</h1>
+                    <h1 class="menu-title">rust-analyzer</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/rust-analyzer/rust-analyzer/tree/master/manual" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/rust-analyzer/rust-analyzer/edit/master/manual/src/non_cargo_based_projects.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/rust-analyzer/rust-analyzer/edit/master/manual/src/non_cargo_based_projects/README.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -156,7 +156,7 @@
 <p>rust-analyzer does not require Cargo. However, if you use some other
 build system, you’ll have to describe the structure of your project for
 rust-analyzer in the <code>rust-project.json</code> format:</p>
-<pre><code class="language-TypeScript">interface JsonProject {
+<pre><code>interface JsonProject {
     /// Path to the sysroot directory.
     ///
     /// The sysroot is where rustc looks for the
@@ -301,23 +301,23 @@ run to perform the checks using the
 <code>rust-analyzer.check.overrideCommand</code> configuration. As an example, the
 following configuration explicitly sets <code>cargo check</code> as the <code>check</code>
 command.</p>
-<pre><code class="language-json">{ &quot;rust-analyzer.check.overrideCommand&quot;: [&quot;cargo&quot;, &quot;check&quot;, &quot;--message-format=json&quot;] }
+<pre><code>{ &quot;rust-analyzer.check.overrideCommand&quot;: [&quot;cargo&quot;, &quot;check&quot;, &quot;--message-format=json&quot;] }
 </code></pre>
 <p><code>check.overrideCommand</code> requires the command specified to output json
 error messages for rust-analyzer to consume. The <code>--message-format=json</code>
 flag does this for <code>cargo check</code> so whichever command you use must also
-output errors in this format. See the <a href="/configuration">Configuration</a>
+output errors in this format. See the <a href="#_configuration">Configuration</a>
 section for more information.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="configuration/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../configuration/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="security.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../security/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -327,11 +327,11 @@ section for more information.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="configuration/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../configuration/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="security.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../security/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -348,19 +348,19 @@ section for more information.</p>
             window.playground_copyable = true;
         </script>
 
-        <script src="ace.js"></script>
-        <script src="editor.js"></script>
-        <script src="mode-rust.js"></script>
-        <script src="theme-dawn.js"></script>
-        <script src="theme-tomorrow_night.js"></script>
+        <script src="../ace.js"></script>
+        <script src="../editor.js"></script>
+        <script src="../mode-rust.js"></script>
+        <script src="../theme-dawn.js"></script>
+        <script src="../theme-tomorrow_night.js"></script>
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
