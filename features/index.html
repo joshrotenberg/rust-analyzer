@@ -409,9 +409,17 @@ items, and <code>region</code> / <code>endregion</code> comment markers.</p>
 <h3 id="highlight-related"><a class="header" href="#highlight-related">Highlight Related</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/highlight_related.rs#40">highlight_related.rs</a> </p>
 <p>Highlights constructs related to the thing under the cursor:</p>
-<p>. if on an identifier, highlights all references to that identifier in the current file
-.. additionally, if the identifier is a trait in a where clause, type parameter trait bound or use item, highlights all references to that trait's assoc items in the corresponding scope
-. if on an <code>async</code> or <code>await token, highlights all yield points for that async context . if on a </code>return<code>or</code>fn<code>keyword,</code>?<code>character or</code>-&gt;<code>return type arrow, highlights all exit points for that context . if on a</code>break<code>, </code>loop<code>, </code>while<code>or</code>for<code>token, highlights all break points for that loop or block context . if on a</code>move<code>or</code>|` token that belongs to a closure, highlights all captures of the closure.</p>
+<ol>
+<li>if on an identifier, highlights all references to that identifier in the current file
+<ul>
+<li>additionally, if the identifier is a trait in a where clause, type parameter trait bound or use item, highlights all references to that trait's assoc items in the corresponding scope</li>
+</ul>
+</li>
+<li>if on an <code>async</code> or `await token, highlights all yield points for that async context</li>
+<li>if on a <code>return</code> or <code>fn</code> keyword, <code>?</code> character or <code>-&gt;</code> return type arrow, highlights all exit points for that context</li>
+<li>if on a <code>break</code>, <code>loop</code>, <code>while</code> or <code>for</code> token, highlights all break points for that loop or block context</li>
+<li>if on a <code>move</code> or <code>|</code> token that belongs to a closure, highlights all captures of the closure.</li>
+</ol>
 <p>Note: <code>?</code>, <code>|</code> and <code>-&gt;</code> do not currently trigger this behavior in the VSCode editor.</p>
 <h3 id="hover"><a class="header" href="#hover">Hover</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/hover.rs#97">hover.rs</a> </p>
