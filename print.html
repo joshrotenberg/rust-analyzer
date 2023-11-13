@@ -1822,7 +1822,7 @@ braces, so it won't confuse generics with comparisons.</p>
 <p><img src="https://user-images.githubusercontent.com/48062697/113065576-04298180-91b1-11eb-91ce-4505e99ed598.gif" alt="Move Item" /></p>
 <h3 id="on-enter"><a class="header" href="#on-enter">On Enter</a></h3>
 <p><strong>Source:</strong>  <a href="features/crates/ide/src/typing/on_enter.rs#16">on_enter.rs</a> </p>
-<p>rust-analyzer can override kbd:[Enter] key to make it smarter:</p>
+<p>rust-analyzer can override <kbd>Enter</kbd> key to make it smarter:</p>
 <ul>
 <li><kbd>Enter</kbd> inside triple-slash comments automatically inserts <code>///</code></li>
 <li><kbd>Enter</kbd> in the middle or after a trailing space in <code>//</code> inserts <code>//</code></li>
@@ -1833,7 +1833,7 @@ braces, so it won't confuse generics with comparisons.</p>
 <p>Note that, depending on the other installed extensions, this feature can visibly slow down typing.
 Similarly, if rust-analyzer crashes or stops responding, <code>Enter</code> might not work.
 In that case, you can still press <code>Shift-Enter</code> to insert a newline.</p>
-<p>VS Code::</p>
+<h2 id="vs-code-1"><a class="header" href="#vs-code-1">VS Code</a></h2>
 <p>Add the following to <code>keybindings.json</code>:</p>
 <pre><code class="language-json">{
   &quot;key&quot;: &quot;Enter&quot;,
@@ -1860,7 +1860,7 @@ In that case, you can still press <code>Shift-Enter</code> to insert a newline.<
 <li>typing <code>{</code> or <code>(</code> in front of an expression inserts a closing <code>}</code> or <code>)</code> after the expression</li>
 <li>typing <code>{</code> in a use item adds a closing <code>}</code> in the right place</li>
 </ul>
-<p>VS Code::</p>
+<h2 id="vs-code-2"><a class="header" href="#vs-code-2">VS Code</a></h2>
 <p>Add the following to <code>settings.json</code>:</p>
 <pre><code class="language-json">&quot;editor.formatOnType&quot;: true,
 </code></pre>
@@ -4553,7 +4553,7 @@ enable support for procedural macros (see <code>rust-analyzer.procMacro.attribut
 <p>Source:  <a href="diagnostics/crates/ide-diagnostics/src/handlers/unused_variables.rs#3">unused_variables.rs</a> </p>
 <p>This diagnostic is triggered when a local variable is not used.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="editor-features"><a class="header" href="#editor-features">Editor Features</a></h1>
-<h2 id="vs-code-1"><a class="header" href="#vs-code-1">VS Code</a></h2>
+<h2 id="vs-code-3"><a class="header" href="#vs-code-3">VS Code</a></h2>
 <h3 id="color-configurations"><a class="header" href="#color-configurations">Color configurations</a></h3>
 <p>It is possible to change the foreground/background color and font
 family/size of inlay hints. Just add this to your <code>settings.json</code>:</p>
