@@ -184,7 +184,7 @@
 <p><strong>Source:</strong>  <a href="crates/ide/src/annotations.rs#20">annotations.rs</a> </p>
 <p>Provides user with annotations above items for looking up references or impl blocks
 and running/debugging binaries.</p>
-<p><img src="/img/features/annotations.png" alt="Annotations" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020672-b7c34f00-917a-11eb-8f6e-858735660a0e.png" alt="Annotations" /></p>
 <h3 id="auto-import"><a class="header" href="#auto-import">Auto Import</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide-assists/src/handlers/auto_import.rs#15">auto_import.rs</a> </p>
 <p>Using the <code>auto-import</code> assist it is possible to insert missing imports for unresolved items.
@@ -232,7 +232,7 @@ start with <code>self</code>. This will result in paths that always start with e
 <li><code>plain</code>: This setting does not impose any restrictions in imports.</li>
 </ul>
 <p>In <code>VS Code</code> the configuration for this is <code>rust-analyzer.imports.prefix</code>.</p>
-<p><img src="/img/features/auto_import.gif" alt="Auto Import" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020673-b85be580-917a-11eb-9022-59585f35d4f8.gif" alt="Auto Import" /></p>
 <h3 id="completion-with-autoimport"><a class="header" href="#completion-with-autoimport">Completion With Autoimport</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide-completion/src/completions/flyimport.rs#19">flyimport.rs</a> </p>
 <p>When completing names in the current scope, proposes additional imports from other modules or crates,
@@ -321,7 +321,7 @@ capability enabled.</p>
 <tr><td>VS Code</td><td><strong>rust-analyzer: Expand macro recursively</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="https://user-images.githubusercontent.com/48062697/113020648-b3973180-917a-11eb-84a9-ecb921293dc5.gif" alt="Expand Macro Recursively" /></p>
+<p><img src="/img/features/expand_macro_recursively.gif" alt="Expand Macro Recursively" /></p>
 <h3 id="expand-and-shrink-selection"><a class="header" href="#expand-and-shrink-selection">Expand and Shrink Selection</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/extend_selection.rs#15">extend_selection.rs</a> </p>
 <p>Extends or shrinks the current selection to the encompassing syntactic construct
@@ -330,7 +330,7 @@ capability enabled.</p>
 <tr><td>VS Code</td><td><kbd>Alt+Shift+→</kbd>, <kbd>Alt+Shift+←</kbd></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/expand_and_shrink_selection.gif" alt="Expand and Shrink Selection" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020651-b42fc800-917a-11eb-8a4f-cf1a07859fac.gif" alt="Expand and Shrink Selection" /></p>
 <h3 id="file-structure"><a class="header" href="#file-structure">File Structure</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/file_structure.rs#25">file_structure.rs</a> </p>
 <p>Provides a tree of the symbols defined in the file. Can be used to</p>
@@ -343,7 +343,7 @@ capability enabled.</p>
 <tr><td>VS Code</td><td><kbd>Ctrl+Shift+O</kbd></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/file_structure.gif" alt="File Structure" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020654-b42fc800-917a-11eb-8388-e7dc4d92b02e.gif" alt="File Structure" /></p>
 <h3 id="find-all-references"><a class="header" href="#find-all-references">Find All References</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/references.rs#43">references.rs</a> </p>
 <p>Shows all references of the item at the cursor location</p>
@@ -351,7 +351,7 @@ capability enabled.</p>
 <tr><td>VS Code</td><td><kbd>Shift+Alt+F12</kbd></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/find_all_references.gif" alt="Find All References" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020670-b7c34f00-917a-11eb-8003-370ac5f2b3cb.gif" alt="Find All References" /></p>
 <h3 id="folding"><a class="header" href="#folding">Folding</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/folding_ranges.rs#36">folding_ranges.rs</a> </p>
 <p>Defines folding regions for curly braced blocks, runs of consecutive use, mod, const or static
@@ -371,7 +371,7 @@ items, and <code>region</code> / <code>endregion</code> comment markers.</p>
 ** <code>logw</code> -&gt; <code>log::warn!(...)</code>
 ** <code>loge</code> -&gt; <code>log::error!(...)</code></li>
 </ul>
-<p><img src="/img/features/format_string_completion.gif" alt="Format String Completion" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020656-b560f500-917a-11eb-87de-02991f61beb8.gif" alt="Format String Completion" /></p>
 <h3 id="go-to-declaration"><a class="header" href="#go-to-declaration">Go to Declaration</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/goto_declaration.rs#13">goto_declaration.rs</a> </p>
 <p>Navigates to the declaration of an identifier.</p>
@@ -389,7 +389,7 @@ items, and <code>region</code> / <code>endregion</code> comment markers.</p>
 <tr><td>VS Code</td><td><kbd>F12</kbd></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/go_to_definition.gif" alt="Go to Definition" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065563-025fbe00-91b1-11eb-83e4-a5a703610b23.gif" alt="Go to Definition" /></p>
 <h3 id="go-to-implementation"><a class="header" href="#go-to-implementation">Go to Implementation</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/goto_implementation.rs#12">goto_implementation.rs</a> </p>
 <p>Navigates to the impl blocks of types.</p>
@@ -397,7 +397,7 @@ items, and <code>region</code> / <code>endregion</code> comment markers.</p>
 <tr><td>VS Code</td><td><kbd>Ctrl+F12</kbd></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/go_to_implementation.gif" alt="Go to Implementation" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065566-02f85480-91b1-11eb-9288-aaad8abd8841.gif" alt="Go to Implementation" /></p>
 <h3 id="go-to-type-definition"><a class="header" href="#go-to-type-definition">Go to Type Definition</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/goto_type_definition.rs#6">goto_type_definition.rs</a> </p>
 <p>Navigates to the type of an identifier.</p>
@@ -405,7 +405,7 @@ items, and <code>region</code> / <code>endregion</code> comment markers.</p>
 <tr><td>VS Code</td><td><strong>Go to Type Definition</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/go_to_type_definition.gif" alt="Go to Type Definition" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020657-b560f500-917a-11eb-9007-0f809733a338.gif" alt="Go to Type Definition" /></p>
 <h3 id="highlight-related"><a class="header" href="#highlight-related">Highlight Related</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/highlight_related.rs#40">highlight_related.rs</a> </p>
 <p>Highlights constructs related to the thing under the cursor:</p>
@@ -417,7 +417,7 @@ items, and <code>region</code> / <code>endregion</code> comment markers.</p>
 <p><strong>Source:</strong>  <a href="crates/ide/src/hover.rs#97">hover.rs</a> </p>
 <p>Shows additional information, like the type of an expression or the documentation for a definition when &quot;focusing&quot; code.
 Focusing is usually hovering with a mouse, but can also be triggered with a shortcut.</p>
-<p><img src="/img/features/hover.gif" alt="Hover" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020658-b5f98b80-917a-11eb-9f88-3dbc27320c95.gif" alt="Hover" /></p>
 <h3 id="inlay-hints"><a class="header" href="#inlay-hints">Inlay Hints</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/inlay_hints.rs#421">inlay_hints.rs</a> </p>
 <p>rust-analyzer shows additional information inline with the source code.
@@ -434,7 +434,7 @@ Editors usually render this using read-only virtual text snippets interspersed w
 <li>elided lifetimes</li>
 <li>compiler inserted reborrows</li>
 </ul>
-<p><img src="/img/features/inlay_hints.png" alt="Hover" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020660-b5f98b80-917a-11eb-8d70-3be3fd558cdd.png" alt="Hover" /></p>
 <h3 id="interpret-function"><a class="header" href="#interpret-function">Interpret Function</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/interpret_function.rs#9">interpret_function.rs</a> </p>
 <div class="table-wrapper"><table><thead><tr><th>Editor</th><th>Action Name</th></tr></thead><tbody>
@@ -449,7 +449,7 @@ Editors usually render this using read-only virtual text snippets interspersed w
 <tr><td>VS Code</td><td><strong>rust-analyzer: Join lines</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/join_lines-2.gif" alt="Join Lines" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020661-b6922200-917a-11eb-87c4-b75acc028f11.gif" alt="Join Lines" /></p>
 <h3 id="magic-completions"><a class="header" href="#magic-completions">Magic Completions</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide-completion/src/lib.rs#45">lib.rs</a> </p>
 <p>In addition to usual reference completion, rust-analyzer provides some ✨magic✨
@@ -496,7 +496,7 @@ mod tests {
 <p>And the auto import completions, enabled with the <code>rust-analyzer.completion.autoimport.enable</code> setting and the corresponding LSP client capabilities.
 Those are the additional completion options with automatic <code>use</code> import and options from all project importable items,
 fuzzy matched against the completion input.</p>
-<p><img src="/img/features/magic_completions.gif" alt="Magic Completions" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113020667-b72ab880-917a-11eb-8778-716cf26a0eb3.gif" alt="Magic Completions" /></p>
 <h3 id="matching-brace"><a class="header" href="#matching-brace">Matching Brace</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/matching_brace.rs#6">matching_brace.rs</a> </p>
 <p>If the cursor is on any brace (<code>&lt;&gt;(){}[]||</code>) which is a part of a brace-pair,
@@ -506,7 +506,7 @@ braces, so it won't confuse generics with comparisons.</p>
 <tr><td>VS Code</td><td><strong>rust-analyzer: Find matching brace</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/matching_brace.gif" alt="Matching Brace" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065573-04298180-91b1-11eb-8dec-d4e2a202f304.gif" alt="Matching Brace" /></p>
 <h3 id="memory-usage"><a class="header" href="#memory-usage">Memory Usage</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide-db/src/apply_change.rs#43">apply_change.rs</a> </p>
 <p>Clears rust-analyzer's internal database and prints memory usage statistics.</p>
@@ -522,7 +522,7 @@ braces, so it won't confuse generics with comparisons.</p>
 <tr><td>VS Code</td><td><strong>rust-analyzer: Move item down</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/move_item.gif" alt="Move Item" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065576-04298180-91b1-11eb-91ce-4505e99ed598.gif" alt="Move Item" /></p>
 <h3 id="on-enter"><a class="header" href="#on-enter">On Enter</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/typing/on_enter.rs#16">on_enter.rs</a> </p>
 <p>rust-analyzer can override kbd:[Enter] key to make it smarter:</p>
@@ -551,7 +551,7 @@ In that case, you can still press <code>Shift-Enter</code> to insert a newline.<
   &quot;when&quot;: &quot;editorTextFocus &amp;&amp; !suggestWidgetVisible &amp;&amp; editorLangId == rust &amp;&amp; vim.mode == 'Insert'&quot;
 }
 </code></pre>
-<p><img src="/img/features/on_enter.gif" alt="On Enter" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065578-04c21800-91b1-11eb-82b8-22b8c481e645.gif" alt="On Enter" /></p>
 <h3 id="on-typing-assists"><a class="header" href="#on-typing-assists">On Typing Assists</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/typing.rs#42">typing.rs</a> </p>
 <p>Some features trigger on typing certain characters:</p>
@@ -567,8 +567,8 @@ In that case, you can still press <code>Shift-Enter</code> to insert a newline.<
 <p>Add the following to <code>settings.json</code>:</p>
 <pre><code class="language-json">&quot;editor.formatOnType&quot;: true,
 </code></pre>
-<p><img src="/img/features/on_typing_assists-1.gif" alt="On Typing Assists" />
-<img src="/img/features/on_typing_assists-2.gif" alt="On Typing Assists" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113166163-69758500-923a-11eb-81ee-eb33ec380399.gif" alt="On Typing Assists" />
+<img src="https://user-images.githubusercontent.com/48062697/113171066-105c2000-923f-11eb-87ab-f4a263346567.gif" alt="On Typing Assists" /></p>
 <h3 id="open-docs"><a class="header" href="#open-docs">Open Docs</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/doc_links.rs#121">doc_links.rs</a> </p>
 <p>Retrieve a links to documentation for the given symbol.</p>
@@ -585,7 +585,7 @@ the selected item. The context menu opens. Select <strong>Open Docs</strong>.</p
 <tr><td>VS Code</td><td><strong>rust-analyzer: Locate parent module</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/parent_module.gif" alt="Parent Module" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065580-04c21800-91b1-11eb-9a32-00086161c0bd.gif" alt="Parent Module" /></p>
 <h3 id="related-tests"><a class="header" href="#related-tests">Related Tests</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/runnables.rs#194">runnables.rs</a> </p>
 <p>Provides a sneak peek of all tests where the current item is used.</p>
@@ -602,7 +602,7 @@ the selected item. The context menu opens. Select <strong>Peek Related Tests</st
 <tr><td>VS Code</td><td><kbd>F2</kbd></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/rename.gif" alt="Rename" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065582-055aae80-91b1-11eb-8ade-2b58e6d81883.gif" alt="Rename" /></p>
 <h3 id="run"><a class="header" href="#run">Run</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/runnables.rs#111">runnables.rs</a> </p>
 <p>Shows a popup suggesting to run a test/benchmark/binary <strong>at the current cursor
@@ -612,7 +612,7 @@ to a shortcut!</p>
 <tr><td>VS Code</td><td><strong>rust-analyzer: Run</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/run.gif" alt="Run" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065583-055aae80-91b1-11eb-958f-d67efcaf6a2f.gif" alt="Run" /></p>
 <h3 id="semantic-syntax-highlighting"><a class="header" href="#semantic-syntax-highlighting">Semantic Syntax Highlighting</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/syntax_highlighting.rs#65">syntax_highlighting.rs</a> </p>
 <p>rust-analyzer highlights the code semantically.
@@ -730,8 +730,8 @@ We also give special modifier for <code>mut</code> and <code>&amp;mut</code> loc
 <tr><td>unsafe</td><td>Emitted for unsafe operations, like unsafe function calls, as ell as the <code>unsafe</code> token.</td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/semantic_syntax_highlighting-1.png" alt="Semantic Syntax Highlighting" />
-<img src="/img/features/semantic_syntax_highlighting-2.png" alt="Semantic Syntax Highlighting" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113164457-06cfb980-9239-11eb-819b-0f93e646acf8.png" alt="Semantic Syntax Highlighting" />
+<img src="https://user-images.githubusercontent.com/48062697/113187625-f7f50100-9250-11eb-825e-91c58f236071.png" alt="Semantic Syntax Highlighting" /></p>
 <h3 id="show-dependency-tree"><a class="header" href="#show-dependency-tree">Show Dependency Tree</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/fetch_crates.rs#13">fetch_crates.rs</a> </p>
 <p>Shows a view tree with all the dependencies of this project</p>
@@ -739,7 +739,7 @@ We also give special modifier for <code>mut</code> and <code>&amp;mut</code> loc
 <tr><td>VS Code</td><td><strong>Rust Dependencies</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/show_dependency_tree.png" alt="Show Dependency Tree" /></p>
+<p><img src="https://user-images.githubusercontent.com/5748995/229394139-2625beab-f4c9-484b-84ed-ad5dee0b1e1a.png" alt="Show Dependency Tree" /></p>
 <h3 id="show-syntax-tree"><a class="header" href="#show-syntax-tree">Show Syntax Tree</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/syntax_tree.rs#9">syntax_tree.rs</a> </p>
 <p>Shows the parse tree of the current file. It exists mostly for debugging
@@ -748,7 +748,7 @@ rust-analyzer itself.</p>
 <tr><td>VS Code</td><td><strong>rust-analyzer: Show Syntax Tree</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/show_syntax_tree.gif" alt="Show Syntax Tree" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065586-068bdb80-91b1-11eb-9507-fee67f9f45a0.gif" alt="Show Syntax Tree" /></p>
 <h3 id="shuffle-crate-graph"><a class="header" href="#shuffle-crate-graph">Shuffle Crate Graph</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/shuffle_crate_graph.rs#7">shuffle_crate_graph.rs</a> </p>
 <p>Randomizes all crate IDs in the crate graph, for debugging.</p>
@@ -763,7 +763,7 @@ rust-analyzer itself.</p>
 <tr><td>VS Code</td><td><strong>rust-analyzer: Status</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/status.gif" alt="Status" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065584-05f34500-91b1-11eb-98cc-5c196f76be7f.gif" alt="Status" /></p>
 <h3 id="structural-search-and-replace"><a class="header" href="#structural-search-and-replace">Structural Search and Replace</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide-ssr/src/lib.rs#8">lib.rs</a> </p>
 <p>Search and replace with named wildcards that will match any expression, type, path, pattern or item.
@@ -863,7 +863,7 @@ is part of graphviz, to be installed.</p>
 <tr><td>VS Code</td><td><strong>rust-analyzer: View Hir</strong></td></tr>
 </tbody></table>
 </div>
-<p><img src="/img/features/view_hir.gif" alt="View Hir" /></p>
+<p><img src="https://user-images.githubusercontent.com/48062697/113065588-068bdb80-91b1-11eb-9a78-0b4ef1e972fb.gif" alt="View Hir" /></p>
 <h3 id="view-memory-layout"><a class="header" href="#view-memory-layout">View Memory Layout</a></h3>
 <p><strong>Source:</strong>  <a href="crates/ide/src/view_memory_layout.rs#77">view_memory_layout.rs</a> </p>
 <p>Displays the recursive memory layout of a datatype.</p>
